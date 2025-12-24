@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For My Love ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+margin:0;
+background:black;
+color:white;
+font-family:Georgia;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+}
+.box{text-align:center;z-index:2;}
+input{
+padding:12px;
+width:220px;
+border-radius:8px;
+border:none;
+font-size:16px;
+}
+button{
+margin-top:10px;
+padding:10px 25px;
+border-radius:8px;
+border:none;
+background:#d90429;
+color:white;
+font-size:16px;
+}
+canvas{position:fixed;top:0;left:0;z-index:1;}
+</style>
+</head>
+
+<body>
+
+<canvas id="snow"></canvas>
+
+<div class="box">
+<h2>🔐 Only for Us</h2>
+<input type="password" id="pass" placeholder="Enter our secret">
+<br><br>
+<button onclick="check()">Open ❤️</button>
+</div>
+
+<script>
+const secret="love123";   // CHANGE PASSWORD
+
+function check(){
+if(document.getElementById("pass").value===secret){
+window.location="love.html";
+}else{
+alert("Wrong password ❌");
+}
+}
+
+const c=document.getElementById("snow");
+const ctx=c.getContext("2d");
+c.width=innerWidth;
+c.height=innerHeight;
+let s=[];
+for(let i=0;i<60;i++){
+s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*4+1});
+}
+function draw(){
+ctx.clearRect(0,0,c.width,c.height);
+ctx.fillStyle="white";
+s.forEach(f=>{
+ctx.beginPath();
+ctx.arc(f.x,f.y,f.r,0,Math.PI*2);
+ctx.fill();
+f.y+=1;
+if(f.y>c.height)f.y=0;
+});
+}
+setInterval(draw,30);
+</script>
+
+</body>
+</html>
